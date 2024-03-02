@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import path from 'path';
+const cors = require("cors");
 
 interface Options {
   port: number;
@@ -31,6 +32,15 @@ export class Server {
     //* Middlewares
     this.app.use( express.json() ); // raw
     this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded
+    this.app.use((req, res, next) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+      next();
+    })
+    this.app.use(cors());
+
+
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );
