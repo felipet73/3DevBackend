@@ -1,6 +1,8 @@
 import express, { Router } from 'express';
 import path from 'path';
 const cors = require("cors");
+import fileUpload from 'express-fileupload';
+
 
 interface Options {
   port: number;
@@ -40,6 +42,9 @@ export class Server {
     })
     this.app.use(cors());
 
+    this.app.use(fileUpload({
+      limits: { fileSize: 50 * 1024 * 1024 },
+    }));
 
 
     //* Public Folder
