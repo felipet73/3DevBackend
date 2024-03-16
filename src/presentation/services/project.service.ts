@@ -1,5 +1,5 @@
 import { ProjectModel } from '../../data';
-import { CreateProjectDto, CustomError, PaginationDto } from '../../domain';
+import { CreateProjectDto, CustomError, PaginationDto, UpdateProjectDto } from '../../domain';
 
 export class ProjectService {
 
@@ -31,8 +31,6 @@ export class ProjectService {
   async getProjects( paginationDto: PaginationDto ) {
 
     const { page, limit } = paginationDto;
-
-
     try {
 
       const [ total, projects ] = await Promise.all( [
@@ -61,11 +59,31 @@ export class ProjectService {
       throw CustomError.internalServer( 'Internal Server Error' );
     }
 
-
-
-
   }
 
+
+
+  async updateProject( updateProjectDto: UpdateProjectDto ) {
+
+    const projectExists = await ProjectModel.findOne( { name: updateProjectDto.name } );
+    if ( !projectExists ) throw CustomError.badRequest( 'Project doesn`t exists' );
+
+    try {
+      //const project = new ProjectModel( updateProjectDto );
+      //await projectExists.update();
+      const projectExists = await ProjectModel.findOneAndUpdate({ name: updateProjectDto.name }, updateProjectDto, {
+        returnOriginal: false
+      });
+      //doc.name; // 'Jean-Luc Picard'
+      //doc.age; // 59
+
+      return projectExists;
+
+    } catch ( error ) {
+      throw CustomError.internalServer( `${ error }` );
+    }
+
+  }
 
 
 

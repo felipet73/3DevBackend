@@ -20,7 +20,7 @@ export class FileUploadRoutes {
 
 
     router.use( FileUploadMiddleware.containFiles );
-    router.use( TypeMiddleware.validTypes(['users','products','categories']) );
+    router.use( TypeMiddleware.validTypes(['users','products','categories','models']) );
 
     
     // Definir las rutas

@@ -7,7 +7,7 @@ export class PaginationDto {
     public readonly limit: number,
   ) {}
 
-  static create( page: number = 1, limit: number = 10 ): [string?, PaginationDto?] {
+  static create( page: number = 1, limit: number = 100 ): [string?, PaginationDto?] {
 
     if ( isNaN(page) || isNaN(limit) ) return ['Page and Limit must be numbers'];
 

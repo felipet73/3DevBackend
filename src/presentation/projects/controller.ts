@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { CreateProjectDto, CustomError, PaginationDto } from '../../domain';
+import { CreateProjectDto, CustomError, PaginationDto, UpdateProjectDto } from '../../domain';
 import { ProjectService } from '../services/project.service';
 
 export class ProjectController {
@@ -48,5 +48,20 @@ export class ProjectController {
 
   };
 
+
+  updateProject = ( req: Request, res: Response ) => {
+
+    const [ error, updateProjectDto ] = UpdateProjectDto.update({ 
+      ...req.body,
+      user: req.body.user.id,
+    });
+    if ( error ) return res.status( 400 ).json( { error } );
+
+
+    this.projectService.updateProject( updateProjectDto! )
+      .then( project => res.status( 201 ).json( project ) )
+      .catch( error => this.handleError( error, res ) );
+
+  };
 
 }

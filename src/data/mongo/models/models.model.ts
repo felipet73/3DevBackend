@@ -6,7 +6,7 @@ const modelsSchema = new mongoose.Schema( {
   name: {
     type: String,
     required: [ true, 'Name is required' ],
-    unique: true,
+    //unique: true,
   },
   datecreated: {
     type: Date,
@@ -19,6 +19,9 @@ const modelsSchema = new mongoose.Schema( {
     type: String,
   },
   image: {
+    type: String,
+  },
+  urn: {
     type: String,
   },
   

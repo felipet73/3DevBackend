@@ -1,25 +1,23 @@
 import { Validators } from '../../../config';
 
-export class CreateModelsDto {
+export class UpdateProjectDto {
 
   private constructor(
     public readonly name: string,
     public readonly datecreated: Date,
-    public readonly file: string,
-    public readonly description: string,
-    public readonly image: string, 
-    public readonly urn: string, 
+    public readonly description: number,
+    public readonly image: string,
+    public readonly models: string[], // ID
   ) { }
 
-  static create( props: { [ key: string ]: any; } ): [ string?, CreateModelsDto?] {
+  static update( props: { [ key: string ]: any; } ): [ string?, UpdateProjectDto?] {
 
     const {
       name,
       datecreated,
-      file,
       description,
       image,
-      urn,
+      models,
     } = props;
 
     if ( !name ) return [ 'Missing name' ];
@@ -30,13 +28,12 @@ export class CreateModelsDto {
     if ( !Validators.isMongoID(category) ) return ['Invalid User ID'];*/
     return [
       undefined,
-      new CreateModelsDto(
+      new UpdateProjectDto(
         name,
         datecreated,
-        file,
         description,
         image,
-        urn,
+        models,
       )
     ];
   }

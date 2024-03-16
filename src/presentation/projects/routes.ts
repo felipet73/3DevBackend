@@ -19,7 +19,7 @@ export class ProjectRoutes {
     // Definir las rutas
     router.get( '/', controller.getProjects );
     router.post( '/',[ AuthMiddleware.validateJWT ], controller.createProject );
-
+    router.post( '/update',[ AuthMiddleware.validateJWT ], controller.updateProject );
     return router;
   }
 
