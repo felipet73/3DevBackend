@@ -1,7 +1,7 @@
 import { Validators } from '../../../config';
 
 export class CreateModelsDto {
-
+ 
   private constructor(
     public readonly name: string,
     public readonly datecreated: Date,
@@ -9,6 +9,9 @@ export class CreateModelsDto {
     public readonly description: string,
     public readonly image: string, 
     public readonly urn: string, 
+    public readonly main: boolean, 
+    public readonly open: boolean, 
+    public readonly defaultView: string, 
   ) { }
 
   static create( props: { [ key: string ]: any; } ): [ string?, CreateModelsDto?] {
@@ -20,6 +23,9 @@ export class CreateModelsDto {
       description,
       image,
       urn,
+      main,
+      open,
+      defaultView
     } = props;
 
     if ( !name ) return [ 'Missing name' ];
@@ -37,6 +43,9 @@ export class CreateModelsDto {
         description,
         image,
         urn,
+        main,
+        open,
+        defaultView
       )
     ];
   }

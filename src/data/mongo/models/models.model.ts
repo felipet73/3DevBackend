@@ -24,6 +24,15 @@ const modelsSchema = new mongoose.Schema( {
   urn: {
     type: String,
   },
+  main: {
+    type: Boolean,
+  },
+  open: {
+    type: Boolean,
+  },
+  defaultView: {
+    type: String,
+  },
   
 }, { timestamps: true } );
 
