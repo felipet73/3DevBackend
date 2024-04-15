@@ -1,12 +1,12 @@
 import mongoose, { Schema } from 'mongoose';
 
 
-const projectSchema = new mongoose.Schema( {
+const folderviewsSchema = new mongoose.Schema( {
 
   name: {
     type: String,
     required: [ true, 'Name is required' ],
-    unique: true,
+    //unique: true,
   },
   datecreated: {
     type: Date,
@@ -15,26 +15,33 @@ const projectSchema = new mongoose.Schema( {
   description: {
     type: String,
   },
-  image: {
-    type: String,
+  project: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true
   },
-  
-  models: {
-    type: [Schema.Types.ObjectId],
+  model: {
+    type: Schema.Types.ObjectId,
     ref: 'Models',
     required: true
   },
-
-  /*user: {
+  views: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Views',
+  },  
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }*/
-
+  },
+  to: {
+    type: [Schema.Types.ObjectId],
+    ref: 'User',
+  }  
 }, { timestamps: true } );
 
 
-projectSchema.set('toJSON', {
+folderviewsSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform: function( doc, ret, options ) {
@@ -43,5 +50,5 @@ projectSchema.set('toJSON', {
 })
 
 
-export const ProjectModel = mongoose.model('Projects', projectSchema);
+export const FolderViewModel = mongoose.model('FolderViews', folderviewsSchema);
 

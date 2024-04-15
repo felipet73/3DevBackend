@@ -1,12 +1,12 @@
 import mongoose, { Schema } from 'mongoose';
 
 
-const projectSchema = new mongoose.Schema( {
+const selectionsSchema = new mongoose.Schema( {
 
   name: {
     type: String,
     required: [ true, 'Name is required' ],
-    unique: true,
+    //unique: true,
   },
   datecreated: {
     type: Date,
@@ -15,26 +15,29 @@ const projectSchema = new mongoose.Schema( {
   description: {
     type: String,
   },
+  ids: {
+    type: [String],
+  },
   image: {
     type: String,
   },
-  
-  models: {
-    type: [Schema.Types.ObjectId],
-    ref: 'Models',
-    required: true
+  type: {
+    type: String,
   },
-
-  /*user: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }*/
-
+  },
+  to: {
+    type: [Schema.Types.ObjectId],
+    ref: 'User',
+  }
+  
 }, { timestamps: true } );
 
 
-projectSchema.set('toJSON', {
+selectionsSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform: function( doc, ret, options ) {
@@ -43,5 +46,5 @@ projectSchema.set('toJSON', {
 })
 
 
-export const ProjectModel = mongoose.model('Projects', projectSchema);
+export const SelectionModel = mongoose.model('Selections', selectionsSchema);
 

@@ -8,6 +8,8 @@ import { ImageRoutes } from './images/routes';
 
 import { ProjectRoutes } from './projects/routes';
 import { ModelsRoutes } from './models/routes';
+import { ViewRoutes } from './views/routes';
+import { FolderViewRoutes } from './folders/folderviews/routes';
 
 export class AppRoutes {
 
@@ -25,7 +27,8 @@ export class AppRoutes {
 
     router.use('/api/projects', ProjectRoutes.routes );
     router.use('/api/models', ModelsRoutes.routes );
-
+    router.use('/api/views', ViewRoutes.routes );
+    router.use('/api/folderviews', FolderViewRoutes.routes );
 
     return router;
   }

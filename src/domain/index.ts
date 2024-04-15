@@ -15,4 +15,11 @@ export * from './dtos/models/create-models.dto';
 export * from './dtos/projects/create-project.dto';
 export * from './dtos/projects/update-project.dto';
 
+
+export * from './dtos/views/create-view.dto';
+export * from './dtos/views/update-view.dto';
+
+export * from './dtos/folders/forlderviews/create-folderview.dto';
+export * from './dtos/folders/forlderviews/update-folderview.dto';
+
 export * from './dtos/shared/pagination.dto';

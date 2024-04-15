@@ -9,3 +9,6 @@ export * from './mongo/models/user.model';
 
 export * from './mongo/models/project.model';
 export * from './mongo/models/models.model';
+
+export * from './mongo/models/view.model';
+export * from './mongo/models/folders/folderview.model';
